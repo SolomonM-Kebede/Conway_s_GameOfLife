@@ -3,6 +3,10 @@
 #include <iostream>
 #include <stdexcept>
 
+
+/*
+It is a class to implement the main rules of the game
+*/
 WorldClass::WorldClass(const int h, const int w)
     : width(w), height(h),
       current(h, std::vector<bool>(w, false)),
@@ -66,17 +70,18 @@ void WorldClass::print() const {
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
             if (current[y][x]) {
-                // Alive cell: green blocks
-                std::cout << "\033[1m\033[32m\u2593\u2593\033[0m";
+                // Alive cell: yellow blocks
+                std::cout << "\033[1m\033[93m\u2593\u2593\033[0m";
             } else {
-                // Dead cell: gray blocks
-                std::cout << "\033[1m\033[90m\u2591\u2591\033[0m";
+                // Dead cell: red blocks
+                std::cout << "\033[1m\033[91m\u2591\u2591\033[0m";
             }
         }
         std::cout << '\n';
     }
     std::cout.flush();
 }
+
 
 void WorldClass::save(const std::string& filename) const {
     std::ofstream file(filename);
