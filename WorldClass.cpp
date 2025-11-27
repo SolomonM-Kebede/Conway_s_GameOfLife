@@ -23,6 +23,7 @@ void WorldClass::evolve() {
     std::vector<std::vector<bool>> next = current;
 
     // Compute next generation from current
+    #pragma omp parallel for
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
             int neighbors = countNeighbors(x, y);
